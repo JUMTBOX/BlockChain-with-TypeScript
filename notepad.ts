@@ -6,11 +6,10 @@ enum User {
 
 interface Info {
   name: string;
-  id: string;
-  password: string;
-  age: number;
+  id?: string;
+  password?: string;
+  age?: number;
 }
-
 abstract class SmartContract {
   constructor(
     private contract: string,
