@@ -10,15 +10,26 @@ interface Info {
   password?: string;
   age?: number;
 }
+
 abstract class SmartContract {
   constructor(
     private contract: string,
-    private userInfo: Info,
+    protected userInfo: Info,
     public userNum: User
   ) {}
-  getUSerInfo() {
-    return `${this.userInfo}`;
+  abstract getUSerInfo(): void;
+
+  getUserNum() {
+    return `${this.userNum},${this.userInfo.name}`;
   }
 }
 
-class NewContract extends SmartContract {}
+class NewContract extends SmartContract {
+  getUSerInfo(): void {
+    console.log(this.userNum, this.userInfo.name);
+  }
+}
+
+const con1 = new NewContract("stax", { name: "sibal" }, 1);
+
+console.log(con1.getUserNum());
